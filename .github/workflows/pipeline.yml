@@ -10,10 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Hola mundo
+      - name: Clonación de código
+        uses: actions/checkout@v3
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
+          java-version: "8"
+          distribution: "temurin"
+
+      - name: Compliación
         run: |
-          echo "hola mundo"
-      - name: Hola mundo 2
-        run: |
-          echo "Echo número 2"
+          mvn package
